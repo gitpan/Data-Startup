@@ -12,9 +12,14 @@ use warnings::register;
 use attributes;
 
 use vars qw( $VERSION $DATE $FILE);
-$VERSION = '0.07';
-$DATE = '2004/05/22';
+$VERSION = '0.08';
+$DATE = '2004/05/27';
 $FILE = __FILE__;
+
+use vars qw(@ISA @EXPORT_OK);
+require Exporter;
+@ISA=('Exporter');
+@EXPORT_OK = qw(config override);
 
 #######
 # Object used to set default, startup, options values.
@@ -130,13 +135,28 @@ sub override
      my $self = shift;
      return bless {},'Data::Startup' unless ref($self);
 
+     #####
+     # Return if no override values
+     #
+     return $self unless (@_);
+
      #########
      # Create a duplicate object keeping the
      # the default object intact.
-     # 
      my %options = %$self;
+
+     #####
+     # Process options hash
+     #     
+     if(ref($self) eq 'HASH') {
+         Data::Startup::config(\%options,@_);
+         return \%options;
+     }
+
+     #####
+     # Process a object with hash underlying data
+     # 
      $self = bless \%options,ref($self);
-     return $self unless (@_);
 
      ##############
      # Do not want to gyrate around to any other
@@ -154,6 +174,28 @@ Data::Startup - startup options class, override, config methods
 
 =head1 SYNOPSIS
 
+ ######
+ # Subroutine interface
+ #
+ use Data::Startup qw(config override);
+ 
+ $options = override(\%default_options, @option_list );
+ $options = override(\%default_options, \@option_list );
+ $options = override(\%default_options, \%option_list );
+
+ @options_list = config(\%options );
+
+ ($key, $old_value) = config(\%options, $key);
+ ($key, $old_value) = config(\%options, $key => $new_value ); 
+ ($key, $old_value) = config(\%options, $key => $new_value );
+
+ @old_options_list = config(\%options, @option_list);
+ @old_options_list = config(\%options, \@option_list);
+ @old_options_list = config(\%options, \%option_list);
+
+ ######
+ # Object interface
+ #
  use Data::Startup
 
  $startup_options = $class->Data::Startup::new( @option_list );
@@ -536,6 +578,96 @@ follow on the next lines as comments. For example,
  #                 'type' => 'ascii',
  #                 'indent' => ''
  #               }, 'Data::Startup' )
+ #
+
+ ##################
+ # create a hash default options
+ # 
+
+   my %default_hash = (
+        perl_secs_numbers => 'multicell',
+        type => 'ascii',   
+        indent => '',
+        'Data::SecsPack' => {}
+    );
+ $default_options = \%default_hash
+
+ # {
+ #          'perl_secs_numbers' => 'multicell',
+ #          'Data::SecsPack' => {},
+ #          'type' => 'ascii',
+ #          'indent' => ''
+ #        }
+ #
+
+ ##################
+ # override default_hash with an option array
+ # 
+
+ Data::Startup::override($default_options, type => 'binary')
+
+ # {
+ #          'perl_secs_numbers' => 'multicell',
+ #          'Data::SecsPack' => {},
+ #          'type' => 'binary',
+ #          'indent' => ''
+ #        }
+ #
+
+ ##################
+ # override default_hash with a reference to a hash
+ # 
+
+ Data::Startup::override($default_options, {'Data::SecsPack'=> {decimal_fraction_digits => 30}})
+
+ # {
+ #          'perl_secs_numbers' => 'multicell',
+ #          'Data::SecsPack' => {
+ #                                'decimal_fraction_digits' => 30
+ #                              },
+ #          'type' => 'ascii',
+ #          'indent' => ''
+ #        }
+ #
+
+ ##################
+ # override default_hash with a reference to an array
+ # 
+
+ Data::Startup::override($default_options, [perl_secs_numbers => 'strict'])
+
+ # {
+ #          'perl_secs_numbers' => 'strict',
+ #          'Data::SecsPack' => {},
+ #          'type' => 'ascii',
+ #          'indent' => ''
+ #        }
+ #
+
+ ##################
+ # return from config default_hash with a reference to an array
+ # 
+
+ [@result = Data::Startup::config($default_options, [perl_secs_numbers => 'strict'])]
+
+ # [
+ #          'perl_secs_numbers',
+ #          'multicell'
+ #        ]
+ #
+
+ ##################
+ # default_hash from config default_hash with a reference to an array
+ # 
+
+ $default_options
+
+ # {
+ #          'perl_secs_numbers' => 'strict',
+ #          'Data::SecsPack' => {},
+ #          'type' => 'ascii',
+ #          'indent' => ''
+ #        }
  #
 
 =head1 QUALITY ASSURANCE

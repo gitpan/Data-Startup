@@ -10,3 +10,5 @@ t/Data/File/Package.pm
 t/Data/Test/Tech.pm
 t/Data/Data/Secs2.pm
 t/Data/Data/Str2Num.pm
+t/ExtUtils/SVDmaker/Test.pm
+t/ExtUtils/SVDmaker/Algorithm/Diff.pm

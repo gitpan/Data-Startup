@@ -7,8 +7,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE);
-$VERSION = '0.01';   # automatically generated file
-$DATE = '2004/05/22';
+$VERSION = '0.02';   # automatically generated file
+$DATE = '2004/05/27';
 $FILE = __FILE__;
 
 
@@ -80,7 +80,7 @@ BEGIN {
    require Test::Tech;
    Test::Tech->import( qw(finish is_skip ok ok_sub plan skip 
                           skip_sub skip_tests tech_config) );
-   plan(tests => 12);
+   plan(tests => 18);
 
 }
 
@@ -106,7 +106,7 @@ END {
 
 
 
-   # Perl code from C:
+   # Perl code from QC:
 my $expected1 = 
 'U1[1] 80
 L[10]
@@ -177,6 +177,79 @@ L[10]
   A[6] strict
   A[4] type
   A[6] binary
+';
+
+
+my $expected5 = 
+'U1[1] 80
+L[10]
+  A[0]
+  A[4] HASH
+  A[14] Data::SecsPack
+  L[2]
+    A[0]
+    A[4] HASH
+  A[6] indent
+  A[0]
+  A[17] perl_secs_numbers
+  A[9] multicell
+  A[4] type
+  A[5] ascii
+';
+
+
+my $expected6 = 
+'U1[1] 80
+L[10]
+  A[0]
+  A[4] HASH
+  A[14] Data::SecsPack
+  L[2]
+    A[0]
+    A[4] HASH
+  A[6] indent
+  A[0]
+  A[17] perl_secs_numbers
+  A[9] multicell
+  A[4] type
+  A[6] binary
+';
+
+my $expected7 = 
+'U1[1] 80
+L[10]
+  A[0]
+  A[4] HASH
+  A[14] Data::SecsPack
+  L[4]
+    A[0]
+    A[4] HASH
+    A[23] decimal_fraction_digits
+    N 30
+  A[6] indent
+  A[0]
+  A[17] perl_secs_numbers
+  A[9] multicell
+  A[4] type
+  A[5] ascii
+';
+
+
+my $expected8 = 
+'U1[1] 80
+L[10]
+  A[0]
+  A[4] HASH
+  A[14] Data::SecsPack
+  L[2]
+    A[0]
+    A[4] HASH
+  A[6] indent
+  A[0]
+  A[17] perl_secs_numbers
+  A[6] strict
+  A[4] type
+  A[5] ascii
 ';
 
 
@@ -278,6 +351,58 @@ ok(  $default_options, # actual results
 
 #  ok:  12
 
+   # Perl code from C:
+  my %default_hash = (
+       perl_secs_numbers => 'multicell',
+       type => 'ascii',   
+       indent => '',
+       'Data::SecsPack' => {}
+   );
+
+
+
+ok(  $default_options = \%default_hash, # actual results
+     $expected5, # expected results
+     "",
+     "create a hash default options");
+
+#  ok:  13
+
+ok(  Data::Startup::override($default_options, type => 'binary'), # actual results
+     $expected6, # expected results
+     "",
+     "override default_hash with an option array");
+
+#  ok:  14
+
+ok(  Data::Startup::override($default_options, {'Data::SecsPack'=> {decimal_fraction_digits => 30}}), # actual results
+     $expected7, # expected results
+     "",
+     "override default_hash with a reference to a hash");
+
+#  ok:  15
+
+ok(  Data::Startup::override($default_options, [perl_secs_numbers => 'strict']), # actual results
+     $expected8, # expected results
+     "",
+     "override default_hash with a reference to an array");
+
+#  ok:  16
+
+ok(  [@result = Data::Startup::config($default_options, [perl_secs_numbers => 'strict'])], # actual results
+     ['perl_secs_numbers', 'multicell'], # expected results
+     "",
+     "return from config default_hash with a reference to an array");
+
+#  ok:  17
+
+ok(  $default_options, # actual results
+     $expected8, # expected results
+     "",
+     "default_hash from config default_hash with a reference to an array");
+
+#  ok:  18
+
 
     finish();
 
@@ -330,6 +455,20 @@ this list of conditions and the following
 disclaimer in the documentation and/or
 other materials provided with the
 distribution.
+
+\=item 3
+
+Commercial installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions; 
+otherwise, a license fee must be paid to
+Softwareware Diamonds.
 
 \=back
 

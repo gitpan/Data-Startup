@@ -10,8 +10,8 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.01';
-$DATE = '2004/05/22';
+$VERSION = '0.02';
+$DATE = '2004/05/27';
 $FILE = __FILE__;
 
 ########
@@ -44,7 +44,7 @@ $FILE = __FILE__;
 
  Version: 
 
- Date: 2004/05/22
+ Date: 2004/05/27
 
  Prepared for: General Public 
 
@@ -89,7 +89,7 @@ L<STD PM Form Database Test Description Fields|Test::STDmaker/STD PM Form Databa
 
 =head2 Test Plan
 
- T: 12^
+ T: 18^
 
 =head2 ok: 1
 
@@ -100,9 +100,8 @@ L<STD PM Form Database Test Description Fields|Test::STDmaker/STD PM Form Databa
      my ($result,@result); # provide scalar and array context
      my ($default_options,$options) = ('$default_options','$options');
  ^
- VO: ^
 
-  C:
+ QC:
  my $expected1 = 
  'U1[1] 80
  L[10]
@@ -170,7 +169,77 @@ L<STD PM Form Database Test Description Fields|Test::STDmaker/STD PM Form Databa
    A[4] type
    A[6] binary
  ';
+
+ my $expected5 = 
+ 'U1[1] 80
+ L[10]
+   A[0]
+   A[4] HASH
+   A[14] Data::SecsPack
+   L[2]
+     A[0]
+     A[4] HASH
+   A[6] indent
+   A[0]
+   A[17] perl_secs_numbers
+   A[9] multicell
+   A[4] type
+   A[5] ascii
+ ';
+
+ my $expected6 = 
+ 'U1[1] 80
+ L[10]
+   A[0]
+   A[4] HASH
+   A[14] Data::SecsPack
+   L[2]
+     A[0]
+     A[4] HASH
+   A[6] indent
+   A[0]
+   A[17] perl_secs_numbers
+   A[9] multicell
+   A[4] type
+   A[6] binary
+ ';
+ my $expected7 = 
+ 'U1[1] 80
+ L[10]
+   A[0]
+   A[4] HASH
+   A[14] Data::SecsPack
+   L[4]
+     A[0]
+     A[4] HASH
+     A[23] decimal_fraction_digits
+     N 30
+   A[6] indent
+   A[0]
+   A[17] perl_secs_numbers
+   A[9] multicell
+   A[4] type
+   A[5] ascii
+ ';
+
+ my $expected8 = 
+ 'U1[1] 80
+ L[10]
+   A[0]
+   A[4] HASH
+   A[14] Data::SecsPack
+   L[2]
+     A[0]
+     A[4] HASH
+   A[6] indent
+   A[0]
+   A[17] perl_secs_numbers
+   A[6] strict
+   A[4] type
+   A[5] ascii
+ ';
  ^
+ VO: ^
   N: UUT loaded^
   R: L<DataPort::DataFile/general [1] - load>^
   A: File::Package->load_package($uut)^
@@ -262,6 +331,57 @@ L<STD PM Form Database Test Description Fields|Test::STDmaker/STD PM Form Databa
   E: $expected1^
  ok: 12^
 
+=head2 ok: 13
+
+  N: create a hash default options^
+
+  C:
+   my %default_hash = (
+        perl_secs_numbers => 'multicell',
+        type => 'ascii',   
+        indent => '',
+        'Data::SecsPack' => {}
+    );
+ ^
+  A: $default_options = \%default_hash^
+  E: $expected5^
+ ok: 13^
+
+=head2 ok: 14
+
+  N: override default_hash with an option array^
+  A: Data::Startup::override($default_options, type => 'binary')^
+  E: $expected6^
+ ok: 14^
+
+=head2 ok: 15
+
+  N: override default_hash with a reference to a hash^
+  A: Data::Startup::override($default_options, {'Data::SecsPack'=> {decimal_fraction_digits => 30}})^
+  E: $expected7^
+ ok: 15^
+
+=head2 ok: 16
+
+  N: override default_hash with a reference to an array^
+  A: Data::Startup::override($default_options, [perl_secs_numbers => 'strict'])^
+  E: $expected8^
+ ok: 16^
+
+=head2 ok: 17
+
+  N: return from config default_hash with a reference to an array^
+  A: [@result = Data::Startup::config($default_options, [perl_secs_numbers => 'strict'])]^
+  E: ['perl_secs_numbers', 'multicell']^
+ ok: 17^
+
+=head2 ok: 18
+
+  N: default_hash from config default_hash with a reference to an array^
+  A: $default_options^
+  E: $expected8^
+ ok: 18^
+
 
 
 #######
@@ -316,6 +436,20 @@ disclaimer in the documentation and/or
 other materials provided with the
 distribution.
 
+=item 3
+
+Commercial installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions; 
+otherwise, a license fee must be paid to
+Softwareware Diamonds.
+
 =back
 
 SOFTWARE DIAMONDS, http://www.SoftwareDiamonds.com,
@@ -344,46 +478,37 @@ ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =head1 SEE ALSO
 
+=over 4
 
+=item L<Data::Startup|Data::Startup>
+
+=back
 
 =back
 
 =for html
-<hr>
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="EMAIL" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
+
 
 =cut
 
 __DATA__
 
-Author: http://www.SoftwareDiamonds.com support@SoftwareDiamonds.com^
-Classification: None^
-Detail_Template: ^
-End_User: General Public^
-File_Spec: Unix^
 Name: ^
-Revision: -^
-STD2167_Template: ^
-Temp: temp.pl^
+File_Spec: Unix^
 UUT: Data::Startup^
+Revision: -^
 Version: ^
+End_User: General Public^
+Author: http://www.SoftwareDiamonds.com support@SoftwareDiamonds.com^
+STD2167_Template: ^
+Detail_Template: ^
+Classification: None^
+Temp: temp.pl^
 Demo: Startup.d^
 Verify: Startup.t^
 
 
- T: 12^
+ T: 18^
 
 
  C:
@@ -394,9 +519,8 @@ Verify: Startup.t^
     my ($default_options,$options) = ('$default_options','$options');
 ^
 
-VO: ^
 
- C:
+QC:
 my $expected1 = 
 'U1[1] 80
 L[10]
@@ -468,8 +592,82 @@ L[10]
   A[4] type
   A[6] binary
 ';
+
+
+my $expected5 = 
+'U1[1] 80
+L[10]
+  A[0]
+  A[4] HASH
+  A[14] Data::SecsPack
+  L[2]
+    A[0]
+    A[4] HASH
+  A[6] indent
+  A[0]
+  A[17] perl_secs_numbers
+  A[9] multicell
+  A[4] type
+  A[5] ascii
+';
+
+
+my $expected6 = 
+'U1[1] 80
+L[10]
+  A[0]
+  A[4] HASH
+  A[14] Data::SecsPack
+  L[2]
+    A[0]
+    A[4] HASH
+  A[6] indent
+  A[0]
+  A[17] perl_secs_numbers
+  A[9] multicell
+  A[4] type
+  A[6] binary
+';
+
+my $expected7 = 
+'U1[1] 80
+L[10]
+  A[0]
+  A[4] HASH
+  A[14] Data::SecsPack
+  L[4]
+    A[0]
+    A[4] HASH
+    A[23] decimal_fraction_digits
+    N 30
+  A[6] indent
+  A[0]
+  A[17] perl_secs_numbers
+  A[9] multicell
+  A[4] type
+  A[5] ascii
+';
+
+
+my $expected8 = 
+'U1[1] 80
+L[10]
+  A[0]
+  A[4] HASH
+  A[14] Data::SecsPack
+  L[2]
+    A[0]
+    A[4] HASH
+  A[6] indent
+  A[0]
+  A[17] perl_secs_numbers
+  A[6] strict
+  A[4] type
+  A[5] ascii
+';
 ^
 
+VO: ^
  N: UUT loaded^
  R: L<DataPort::DataFile/general [1] - load>^
  A: File::Package->load_package($uut)^
@@ -540,8 +738,56 @@ ok: 11^
  E: $expected1^
 ok: 12^
 
+ N: create a hash default options^
 
-See_Also: ^
+ C:
+  my %default_hash = (
+       perl_secs_numbers => 'multicell',
+       type => 'ascii',   
+       indent => '',
+       'Data::SecsPack' => {}
+   );
+^
+
+ A: $default_options = \%default_hash^
+ E: $expected5^
+ok: 13^
+
+ N: override default_hash with an option array^
+ A: Data::Startup::override($default_options, type => 'binary')^
+ E: $expected6^
+ok: 14^
+
+ N: override default_hash with a reference to a hash^
+ A: Data::Startup::override($default_options, {'Data::SecsPack'=> {decimal_fraction_digits => 30}})^
+ E: $expected7^
+ok: 15^
+
+ N: override default_hash with a reference to an array^
+ A: Data::Startup::override($default_options, [perl_secs_numbers => 'strict'])^
+ E: $expected8^
+ok: 16^
+
+ N: return from config default_hash with a reference to an array^
+ A: [@result = Data::Startup::config($default_options, [perl_secs_numbers => 'strict'])]^
+ E: ['perl_secs_numbers', 'multicell']^
+ok: 17^
+
+ N: default_hash from config default_hash with a reference to an array^
+ A: $default_options^
+ E: $expected8^
+ok: 18^
+
+
+
+See_Also:
+\=over 4
+
+\=item L<Data::Startup|Data::Startup>
+
+\=back
+^
+
 
 Copyright:
 copyright © 2004 Software Diamonds.
@@ -568,6 +814,20 @@ disclaimer in the documentation and/or
 other materials provided with the
 distribution.
 
+\=item 3
+
+Commercial installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions; 
+otherwise, a license fee must be paid to
+Softwareware Diamonds.
+
 \=back
 
 SOFTWARE DIAMONDS, http://www.SoftwareDiamonds.com,
@@ -588,24 +848,7 @@ ADVISED OF NEGLIGENCE OR OTHERWISE) ARISING IN
 ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
 ^
 
-
-HTML:
-<hr>
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="EMAIL" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
-^
-
+HTML: ^
 
 
 ~-~

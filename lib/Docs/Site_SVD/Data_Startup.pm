@@ -10,24 +10,26 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.03';
-$DATE = '2004/05/22';
+$VERSION = '0.04';
+$DATE = '2004/05/27';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Startup.pm' => [qw(0.03 2004/05/22), 'new'],
-    'MANIFEST' => [qw(0.03 2004/05/22), 'generated new'],
-    'Makefile.PL' => [qw(0.03 2004/05/22), 'generated new'],
-    'README' => [qw(0.03 2004/05/22), 'generated new'],
-    'lib/Data/Startup.pm' => [qw(0.07 2004/05/22), 'new'],
-    't/Data/Startup.d' => [qw(0.01 2004/05/22), 'new'],
-    't/Data/Startup.pm' => [qw(0.01 2004/05/22), 'new'],
-    't/Data/Startup.t' => [qw(0.01 2004/05/22), 'new'],
-    't/Data/File/Package.pm' => [qw(1.17 2004/05/22), 'new'],
-    't/Data/Test/Tech.pm' => [qw(1.26 2004/05/22), 'new'],
-    't/Data/Data/Secs2.pm' => [qw(1.26 2004/05/22), 'new'],
-    't/Data/Data/Str2Num.pm' => [qw(0.08 2004/05/22), 'new'],
+    'lib/Docs/Site_SVD/Data_Startup.pm' => [qw(0.04 2004/05/27), 'revised 0.03'],
+    'MANIFEST' => [qw(0.04 2004/05/27), 'generated, replaces 0.03'],
+    'Makefile.PL' => [qw(0.04 2004/05/27), 'generated, replaces 0.03'],
+    'README' => [qw(0.04 2004/05/27), 'generated, replaces 0.03'],
+    'lib/Data/Startup.pm' => [qw(0.08 2004/05/27), 'revised 0.07'],
+    't/Data/Startup.d' => [qw(0.02 2004/05/27), 'revised 0.01'],
+    't/Data/Startup.pm' => [qw(0.02 2004/05/27), 'revised 0.01'],
+    't/Data/Startup.t' => [qw(0.02 2004/05/27), 'revised 0.01'],
+    't/Data/File/Package.pm' => [qw(1.18 2004/05/27), 'unchanged'],
+    't/Data/Test/Tech.pm' => [qw(1.26 2004/05/27), 'unchanged'],
+    't/Data/Data/Secs2.pm' => [qw(1.26 2004/05/27), 'unchanged'],
+    't/Data/Data/Str2Num.pm' => [qw(0.08 2004/05/27), 'unchanged'],
+    't/ExtUtils/SVDmaker/Test.pm' => [qw(0.04 2004/05/27), 'new'],
+    't/ExtUtils/SVDmaker/Algorithm/Diff.pm' => [qw(0.04 2004/05/27), 'new'],
 
 );
 
@@ -58,11 +60,11 @@ Docs::Site_SVD::Data_Startup - startup options class, override, config methods
 
  Docs::Site_SVD::Data_Startup - startup options class, override, config methods
 
- Revision: A
+ Revision: C
 
- Version: 0.03
+ Version: 0.04
 
- Date: 2004/05/22
+ Date: 2004/05/27
 
  Prepared for: General Public 
 
@@ -102,7 +104,7 @@ the methods directly as in an option object.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Startup version 0.03
+This document releases Data::Startup version 0.04
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -117,7 +119,7 @@ system file specification.
 
 This document releases the file 
 
- Data-Startup-0.03.tar.gz
+ Data-Startup-0.04.tar.gz
 
 found at the following repository(s):
 
@@ -201,18 +203,20 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Startup.pm                            0.03    2004/05/22 new
- MANIFEST                                                     0.03    2004/05/22 generated new
- Makefile.PL                                                  0.03    2004/05/22 generated new
- README                                                       0.03    2004/05/22 generated new
- lib/Data/Startup.pm                                          0.07    2004/05/22 new
- t/Data/Startup.d                                             0.01    2004/05/22 new
- t/Data/Startup.pm                                            0.01    2004/05/22 new
- t/Data/Startup.t                                             0.01    2004/05/22 new
- t/Data/File/Package.pm                                       1.17    2004/05/22 new
- t/Data/Test/Tech.pm                                          1.26    2004/05/22 new
- t/Data/Data/Secs2.pm                                         1.26    2004/05/22 new
- t/Data/Data/Str2Num.pm                                       0.08    2004/05/22 new
+ lib/Docs/Site_SVD/Data_Startup.pm                            0.04    2004/05/27 revised 0.03
+ MANIFEST                                                     0.04    2004/05/27 generated, replaces 0.03
+ Makefile.PL                                                  0.04    2004/05/27 generated, replaces 0.03
+ README                                                       0.04    2004/05/27 generated, replaces 0.03
+ lib/Data/Startup.pm                                          0.08    2004/05/27 revised 0.07
+ t/Data/Startup.d                                             0.02    2004/05/27 revised 0.01
+ t/Data/Startup.pm                                            0.02    2004/05/27 revised 0.01
+ t/Data/Startup.t                                             0.02    2004/05/27 revised 0.01
+ t/Data/File/Package.pm                                       1.18    2004/05/27 unchanged
+ t/Data/Test/Tech.pm                                          1.26    2004/05/27 unchanged
+ t/Data/Data/Secs2.pm                                         1.26    2004/05/27 unchanged
+ t/Data/Data/Str2Num.pm                                       0.08    2004/05/27 unchanged
+ t/ExtUtils/SVDmaker/Test.pm                                  0.04    2004/05/27 new
+ t/ExtUtils/SVDmaker/Algorithm/Diff.pm                        0.04    2004/05/27 new
 
 
 =head2 3.3 Changes
@@ -254,6 +258,12 @@ Reworked the C<new> subroutine so that it specifically handles the
 case of no inputs and only accepts an array with even number of
 members to initialize an option hash.
 
+=item Data::Startup 0.04
+
+Add capability to the C<override> subroutine so that it may handle
+hashes as well as object references for the first argument.
+This adds a subroutine interface to the object interface.
+
 =back
 
 =head2 3.4 Adaptation data.
@@ -293,13 +303,13 @@ Enter one of the following repositories in a web browser:
   http://www.softwarediamonds/packages/
   http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-Right click on 'Data-Startup-0.03.tar.gz' and download to a temporary
+Right click on 'Data-Startup-0.04.tar.gz' and download to a temporary
 installation directory.
 Enter the following where $make is 'nmake' for microsoft
 windows; otherwise 'make'.
 
- gunzip Data-Startup-0.03.tar.gz
- tar -xf Data-Startup-0.03.tar
+ gunzip Data-Startup-0.04.tar.gz
+ tar -xf Data-Startup-0.04.tar
  perl Makefile.PL
  $make test
  $make install
@@ -367,11 +377,11 @@ __DATA__
 DISTNAME: Data-Startup^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.03^
+VERSION : 0.04^
 FREEZE: 1^
-PREVIOUS_DISTNAME:  0.02^
-PREVIOUS_RELEASE:  ^
-REVISION: A^
+PREVIOUS_DISTNAME: ^
+PREVIOUS_RELEASE: 0.03^
+REVISION: C^
 
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
@@ -402,6 +412,11 @@ lib/File/Package.pm => t/Data/File/Package.pm
 lib/Test/Tech.pm => t/Data/Test/Tech.pm
 lib/Data/Secs2.pm => t/Data/Data/Secs2.pm
 lib/Data/Str2Num.pm => t/Data/Data/Str2Num.pm
+^
+
+REPLACE: 
+libperl/Test.pm => t/ExtUtils/SVDmaker/Test.pm
+libperl/Algorithm/Diff.pm  => t/ExtUtils/SVDmaker/Algorithm/Diff.pm
 ^
 
 PREREQ_PM:  ^
@@ -446,6 +461,12 @@ SEMI E5.
 Reworked the C<new> subroutine so that it specifically handles the
 case of no inputs and only accepts an array with even number of
 members to initialize an option hash.
+
+\=item Data::Startup 0.04
+
+Add capability to the C<override> subroutine so that it may handle
+hashes as well as object references for the first argument.
+This adds a subroutine interface to the object interface.
 
 \=back
 ^
@@ -574,7 +595,8 @@ NOTES:
 
 ^
 
-SEE_ALSO: 
+SEE_ALSO:
+
 \=over 4
 
 \=item L<Data::Startup|Data::Startup> 
@@ -584,11 +606,27 @@ SEE_ALSO:
 \=item L<Docs::US_DOD::SVD|Docs::US_DOD::SVD> 
 
 \=back
+
 ^
 
 
 HTML: ^
+
 ~-~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
