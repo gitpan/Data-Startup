@@ -371,7 +371,7 @@ QUALITY ASSURANCE
     generated the "Startup.t" test script, "Startup.d" demo script, and
     "t::Data::Startup" program module POD, from the "t::Data::Startup"
     program module contents. The "tmake.pl" cover script automatically ran
-    the "Startup.d" demo script and inserted the results int the
+    the "Startup.d" demo script and inserted the results into the
     'DEMONSTRATION' section above. The "t::Data::Startup" program module is
     in the distribution file Data-Startup-$VERSION.tar.gz.
 
@@ -409,7 +409,14 @@ NOTES
         notice, this list of conditions and the following disclaimer in the
         documentation and/or other materials provided with the distribution.
 
-    SOFTWARE DIAMONDS, http::www.softwarediamonds.com, PROVIDES THIS
+    3   Commercial installation of the binary or source must visually
+        present to the installer the above copyright notice, this list of
+        conditions intact, that the original source is available at
+        http://softwarediamonds.com and provide means for the installer to
+        actively accept the list of conditions; otherwise, a license fee
+        must be paid to Softwareware Diamonds.
+
+    SOFTWARE DIAMONDS, http://www.softwarediamonds.com, PROVIDES THIS
     SOFTWARE 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
     NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
     FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL SOFTWARE
@@ -424,18 +431,22 @@ NOTES
 SEE ALSO
     Docs::Site_SVD::Data_Startup
     Test::STDmaker
+NAME
+    Docs::Site_SVD::Data_Startup - startup options class, override, config
+    methods
+
 Title Page
      Software Version Description
 
      for
 
-     Data::Startup - startup options class, override, config methods
+     Docs::Site_SVD::Data_Startup - startup options class, override, config methods
 
      Revision: A
 
-     Version: 0.02
+     Version: 0.03
 
-     Date: 2004/04/29
+     Date: 2004/05/22
 
      Prepared for: General Public 
 
@@ -471,7 +482,7 @@ Title Page
 
   1.3 Document overview.
 
-    This document releases Data::Startup version 0.02 providing a
+    This document releases Data::Startup version 0.03 providing a
     description of the inventory, installation instructions and other
     information necessary to utilize and track this release.
 
@@ -483,7 +494,7 @@ Title Page
 
     This document releases the file
 
-     Data-Startup-0.02.tar.gz
+     Data-Startup-0.03.tar.gz
 
     found at the following repository(s):
 
@@ -513,6 +524,12 @@ Title Page
             disclaimer in the documentation and/or other materials provided
             with the distribution.
 
+        3   The installation of the binary or source must visually present
+            to the installer the above copyright notice, this list of
+            conditions intact, that the original source is available at
+            http://softwarediamonds.com and provide means for the installer
+            to actively accept the list of conditions.
+
         SOFTWARE DIAMONDS, http://www.SoftwareDiamonds.com, PROVIDES THIS
         SOFTWARE 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
         BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
@@ -533,18 +550,18 @@ Title Page
 
      file                                                         version date       comment
      ------------------------------------------------------------ ------- ---------- ------------------------
-     lib/Docs/Site_SVD/Data_Startup.pm                            0.02    2004/04/29 new
-     MANIFEST                                                     0.02    2004/04/29 generated new
-     Makefile.PL                                                  0.02    2004/04/29 generated new
-     README                                                       0.02    2004/04/29 generated new
-     lib/Data/Startup.pm                                          0.03    2004/04/29 new
-     t/Data/Startup.d                                             0.01    2004/04/29 new
-     t/Data/Startup.pm                                            0.01    2004/04/29 new
-     t/Data/Startup.t                                             0.01    2004/04/29 new
-     t/Data/File/Package.pm                                       1.16    2004/04/29 new
-     t/Data/Test/Tech.pm                                          1.21    2004/04/29 new
-     t/Data/Data/Secs2.pm                                         1.18    2004/04/29 new
-     t/Data/Data/SecsPack.pm                                      0.03    2004/04/29 new
+     lib/Docs/Site_SVD/Data_Startup.pm                            0.03    2004/05/22 new
+     MANIFEST                                                     0.03    2004/05/22 generated new
+     Makefile.PL                                                  0.03    2004/05/22 generated new
+     README                                                       0.03    2004/05/22 generated new
+     lib/Data/Startup.pm                                          0.07    2004/05/22 new
+     t/Data/Startup.d                                             0.01    2004/05/22 new
+     t/Data/Startup.pm                                            0.01    2004/05/22 new
+     t/Data/Startup.t                                             0.01    2004/05/22 new
+     t/Data/File/Package.pm                                       1.17    2004/05/22 new
+     t/Data/Test/Tech.pm                                          1.26    2004/05/22 new
+     t/Data/Data/Secs2.pm                                         1.26    2004/05/22 new
+     t/Data/Data/Str2Num.pm                                       0.08    2004/05/22 new
 
   3.3 Changes
 
@@ -569,6 +586,16 @@ Title Page
         only was corrupted and had a "Data::SecsPack" install else c<vmake>
         would of failed. Remove "Data::SecsPack" from the test Perl only
         site lib.
+
+    Data::Startup 0.03
+        Replaced "Data::SecsPack" wit "Data::Str2Num" in test library. The
+        "Data::Secs2" package used form comparisions now only includes
+        "Data::SecsPack" if it needs to pack numbers in accordance with SEMI
+        E5.
+
+        Reworked the "new" subroutine so that it specifically handles the
+        case of no inputs and only accepts an array with even number of
+        members to initialize an option hash.
 
   3.4 Adaptation data.
 
@@ -602,12 +629,12 @@ Title Page
           http://www.softwarediamonds/packages/
           http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-        Right click on 'Data-Startup-0.02.tar.gz' and download to a
+        Right click on 'Data-Startup-0.03.tar.gz' and download to a
         temporary installation directory. Enter the following where $make is
         'nmake' for microsoft windows; otherwise 'make'.
 
-         gunzip Data-Startup-0.02.tar.gz
-         tar -xf Data-Startup-0.02.tar
+         gunzip Data-Startup-0.03.tar.gz
+         tar -xf Data-Startup-0.03.tar
          perl Makefile.PL
          $make test
          $make install

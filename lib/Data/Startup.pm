@@ -12,8 +12,8 @@ use warnings::register;
 use attributes;
 
 use vars qw( $VERSION $DATE $FILE);
-$VERSION = '0.03';
-$DATE = '2004/04/29';
+$VERSION = '0.07';
+$DATE = '2004/05/22';
 $FILE = __FILE__;
 
 #######
@@ -98,7 +98,7 @@ sub config
      if(@$array == 1)  {
          return ($array->[0], $self->{$array->[0]});
      }
-     elsif(@$array) {
+     elsif(@$array && ${$array}[0]) {
          if(@$array %  2 == 0) {
             my %hash = @$array;
             $options_override = \%hash;
@@ -549,7 +549,7 @@ and C<t::Data::Startup> program module POD,
 from the C<t::Data::Startup> program module contents.
 The C<tmake.pl> cover script automatically ran the
 C<Startup.d> demo script and inserted the results
-int the 'DEMONSTRATION' section above.
+into the 'DEMONSTRATION' section above.
 The  C<t::Data::Startup> program module
 is in the distribution file
 F<Data-Startup-$VERSION.tar.gz>.
@@ -602,9 +602,24 @@ disclaimer in the documentation and/or
 other materials provided with the
 distribution.
 
+=item 3
+
+Commercial installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions; 
+otherwise, a license fee must be paid to
+Softwareware Diamonds.
+
+
 =back
 
-SOFTWARE DIAMONDS, http::www.softwarediamonds.com,
+SOFTWARE DIAMONDS, http://www.softwarediamonds.com,
 PROVIDES THIS SOFTWARE 
 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 INCLUDING, BUT NOT LIMITED TO, THE IMPLIED

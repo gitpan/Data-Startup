@@ -11,14 +11,14 @@ use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
 $VERSION = '0.01';
-$DATE = '2004/04/29';
+$DATE = '2004/05/22';
 $FILE = __FILE__;
 
 ########
 # The Test::STDmaker module uses the data after the __DATA__ 
 # token to automatically generate the this file.
 #
-# Don't edit anything before __DATA_. Edit instead
+# Do not edit anything before __DATA_. Edit instead
 # the data after the __DATA__ token.
 #
 # ANY CHANGES MADE BEFORE the  __DATA__ token WILL BE LOST
@@ -27,6 +27,10 @@ $FILE = __FILE__;
 #
 #
 
+
+=head1 NAME
+
+ - Software Test Description for Data::Startup
 
 =head1 TITLE PAGE
 
@@ -40,7 +44,7 @@ $FILE = __FILE__;
 
  Version: 
 
- Date: 2004/04/29
+ Date: 2004/05/22
 
  Prepared for: General Public 
 
@@ -48,35 +52,40 @@ $FILE = __FILE__;
 
  Classification: None
 
+#######
+#  
+#  1. SCOPE
+#
+#
 =head1 SCOPE
 
 This detail STD and the 
 L<General Perl Program Module (PM) STD|Test::STD::PerlSTD>
 establishes the tests to verify the
 requirements of Perl Program Module (PM) L<Data::Startup|Data::Startup>
-
 The format of this STD is a tailored L<2167A STD DID|Docs::US_DOD::STD>.
-in accordance with 
-L<Detail STD Format|Test::STDmaker/Detail STD Format>.
+
+#######
+#  
+#  3. TEST PREPARATIONS
+#
+#
+=head1 TEST PREPARATIONS
+
+Test preparations are establishes by the L<General STD|Test::STD::PerlSTD>.
+
 
 #######
 #  
 #  4. TEST DESCRIPTIONS
 #
-#  4.1 Test 001
 #
-#  ..
-#
-#  4.x Test x
-#
-#
-
 =head1 TEST DESCRIPTIONS
 
 The test descriptions uses a legend to
 identify different aspects of a test description
 in accordance with
-L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description Fields>.
+L<STD PM Form Database Test Description Fields|Test::STDmaker/STD PM Form Database Test Description Fields>.
 
 =head2 Test Plan
 
@@ -153,7 +162,7 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
      A[0]
      A[4] HASH
      A[23] decimal_fraction_digits
-     U1[1] 30
+     N 30
    A[6] indent
    A[0]
    A[17] perl_secs_numbers
@@ -359,16 +368,17 @@ ANY WAY OUT OF THE POSSIBILITY OF SUCH DAMAGE.
 
 __DATA__
 
-File_Spec: Unix^
-UUT: Data::Startup^
-Revision: -^
-End_User: General Public^
 Author: http://www.SoftwareDiamonds.com support@SoftwareDiamonds.com^
-Detail_Template: ^
-STD2167_Template: ^
-Version: ^
 Classification: None^
+Detail_Template: ^
+End_User: General Public^
+File_Spec: Unix^
+Name: ^
+Revision: -^
+STD2167_Template: ^
 Temp: temp.pl^
+UUT: Data::Startup^
+Version: ^
 Demo: Startup.d^
 Verify: Startup.t^
 
@@ -450,7 +460,7 @@ L[10]
     A[0]
     A[4] HASH
     A[23] decimal_fraction_digits
-    U1[1] 30
+    N 30
   A[6] indent
   A[0]
   A[17] perl_secs_numbers

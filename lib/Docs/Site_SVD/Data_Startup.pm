@@ -10,24 +10,24 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.02';
-$DATE = '2004/04/29';
+$VERSION = '0.03';
+$DATE = '2004/05/22';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Startup.pm' => [qw(0.02 2004/04/29), 'new'],
-    'MANIFEST' => [qw(0.02 2004/04/29), 'generated new'],
-    'Makefile.PL' => [qw(0.02 2004/04/29), 'generated new'],
-    'README' => [qw(0.02 2004/04/29), 'generated new'],
-    'lib/Data/Startup.pm' => [qw(0.03 2004/04/29), 'new'],
-    't/Data/Startup.d' => [qw(0.01 2004/04/29), 'new'],
-    't/Data/Startup.pm' => [qw(0.01 2004/04/29), 'new'],
-    't/Data/Startup.t' => [qw(0.01 2004/04/29), 'new'],
-    't/Data/File/Package.pm' => [qw(1.16 2004/04/29), 'new'],
-    't/Data/Test/Tech.pm' => [qw(1.21 2004/04/29), 'new'],
-    't/Data/Data/Secs2.pm' => [qw(1.18 2004/04/29), 'new'],
-    't/Data/Data/SecsPack.pm' => [qw(0.03 2004/04/29), 'new'],
+    'lib/Docs/Site_SVD/Data_Startup.pm' => [qw(0.03 2004/05/22), 'new'],
+    'MANIFEST' => [qw(0.03 2004/05/22), 'generated new'],
+    'Makefile.PL' => [qw(0.03 2004/05/22), 'generated new'],
+    'README' => [qw(0.03 2004/05/22), 'generated new'],
+    'lib/Data/Startup.pm' => [qw(0.07 2004/05/22), 'new'],
+    't/Data/Startup.d' => [qw(0.01 2004/05/22), 'new'],
+    't/Data/Startup.pm' => [qw(0.01 2004/05/22), 'new'],
+    't/Data/Startup.t' => [qw(0.01 2004/05/22), 'new'],
+    't/Data/File/Package.pm' => [qw(1.17 2004/05/22), 'new'],
+    't/Data/Test/Tech.pm' => [qw(1.26 2004/05/22), 'new'],
+    't/Data/Data/Secs2.pm' => [qw(1.26 2004/05/22), 'new'],
+    't/Data/Data/Str2Num.pm' => [qw(0.08 2004/05/22), 'new'],
 
 );
 
@@ -46,19 +46,23 @@ use vars qw(%INVENTORY);
 
 
 
+=head1 NAME
+
+Docs::Site_SVD::Data_Startup - startup options class, override, config methods
+
 =head1 Title Page
 
  Software Version Description
 
  for
 
- Data::Startup - startup options class, override, config methods
+ Docs::Site_SVD::Data_Startup - startup options class, override, config methods
 
  Revision: A
 
- Version: 0.02
+ Version: 0.03
 
- Date: 2004/04/29
+ Date: 2004/05/22
 
  Prepared for: General Public 
 
@@ -98,7 +102,7 @@ the methods directly as in an option object.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Startup version 0.02
+This document releases Data::Startup version 0.03
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -113,7 +117,7 @@ system file specification.
 
 This document releases the file 
 
- Data-Startup-0.02.tar.gz
+ Data-Startup-0.03.tar.gz
 
 found at the following repository(s):
 
@@ -157,6 +161,18 @@ disclaimer in the documentation and/or
 other materials provided with the
 distribution.
 
+=item 3
+
+The installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions.
+
 =back
 
 SOFTWARE DIAMONDS, http://www.SoftwareDiamonds.com,
@@ -185,18 +201,18 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Startup.pm                            0.02    2004/04/29 new
- MANIFEST                                                     0.02    2004/04/29 generated new
- Makefile.PL                                                  0.02    2004/04/29 generated new
- README                                                       0.02    2004/04/29 generated new
- lib/Data/Startup.pm                                          0.03    2004/04/29 new
- t/Data/Startup.d                                             0.01    2004/04/29 new
- t/Data/Startup.pm                                            0.01    2004/04/29 new
- t/Data/Startup.t                                             0.01    2004/04/29 new
- t/Data/File/Package.pm                                       1.16    2004/04/29 new
- t/Data/Test/Tech.pm                                          1.21    2004/04/29 new
- t/Data/Data/Secs2.pm                                         1.18    2004/04/29 new
- t/Data/Data/SecsPack.pm                                      0.03    2004/04/29 new
+ lib/Docs/Site_SVD/Data_Startup.pm                            0.03    2004/05/22 new
+ MANIFEST                                                     0.03    2004/05/22 generated new
+ Makefile.PL                                                  0.03    2004/05/22 generated new
+ README                                                       0.03    2004/05/22 generated new
+ lib/Data/Startup.pm                                          0.07    2004/05/22 new
+ t/Data/Startup.d                                             0.01    2004/05/22 new
+ t/Data/Startup.pm                                            0.01    2004/05/22 new
+ t/Data/Startup.t                                             0.01    2004/05/22 new
+ t/Data/File/Package.pm                                       1.17    2004/05/22 new
+ t/Data/Test/Tech.pm                                          1.26    2004/05/22 new
+ t/Data/Data/Secs2.pm                                         1.26    2004/05/22 new
+ t/Data/Data/Str2Num.pm                                       0.08    2004/05/22 new
 
 
 =head2 3.3 Changes
@@ -227,6 +243,17 @@ was corrupted and had a C<Data::SecsPack> install else c<vmake>
 would of failed. Remove C<Data::SecsPack> from the test Perl
 only site lib.
 
+=item Data::Startup 0.03
+
+Replaced C<Data::SecsPack> wit C<Data::Str2Num> in test library. The
+C<Data::Secs2> package used form comparisions now only includes
+C<Data::SecsPack> if it needs to pack numbers in accordance with
+SEMI E5.
+
+Reworked the C<new> subroutine so that it specifically handles the
+case of no inputs and only accepts an array with even number of
+members to initialize an option hash.
+
 =back
 
 =head2 3.4 Adaptation data.
@@ -255,6 +282,7 @@ To installed the release file, use the CPAN module
 pr PPM module in the Perl release
 or the INSTALL.PL script at the following web site:
 
+
  http://packages.SoftwareDiamonds.com
 
 Follow the instructions for the the chosen installation software.
@@ -265,13 +293,13 @@ Enter one of the following repositories in a web browser:
   http://www.softwarediamonds/packages/
   http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-Right click on 'Data-Startup-0.02.tar.gz' and download to a temporary
+Right click on 'Data-Startup-0.03.tar.gz' and download to a temporary
 installation directory.
 Enter the following where $make is 'nmake' for microsoft
 windows; otherwise 'make'.
 
- gunzip Data-Startup-0.02.tar.gz
- tar -xf Data-Startup-0.02.tar
+ gunzip Data-Startup-0.03.tar.gz
+ tar -xf Data-Startup-0.03.tar
  perl Makefile.PL
  $make test
  $make install
@@ -328,17 +356,7 @@ None.
 =back
 
 =for html
-<hr>
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
+
 
 =cut
 
@@ -349,16 +367,16 @@ __DATA__
 DISTNAME: Data-Startup^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.02^
+VERSION : 0.03^
 FREEZE: 1^
-PREVIOUS_DISTNAME:  0.01^
+PREVIOUS_DISTNAME:  0.02^
 PREVIOUS_RELEASE:  ^
 REVISION: A^
 
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
 ABSTRACT: startup options class, override, config methods^
-TITLE   : Data::Startup - startup options class, override, config methods^
+TITLE   : Docs::Site_SVD::Data_Startup - startup options class, override, config methods^
 END_USER: General Public^
 COPYRIGHT: copyright © 2003 Software Diamonds^
 CLASSIFICATION: NONE^
@@ -383,7 +401,7 @@ t/Data/Startup.*
 lib/File/Package.pm => t/Data/File/Package.pm
 lib/Test/Tech.pm => t/Data/Test/Tech.pm
 lib/Data/Secs2.pm => t/Data/Data/Secs2.pm
-lib/Data/SecsPack.pm => t/Data/Data/SecsPack.pm
+lib/Data/Str2Num.pm => t/Data/Data/Str2Num.pm
 ^
 
 PREREQ_PM:  ^
@@ -417,6 +435,17 @@ Added C<Data::SecsPack> to the test library. The test Perl site lib only
 was corrupted and had a C<Data::SecsPack> install else c<vmake>
 would of failed. Remove C<Data::SecsPack> from the test Perl
 only site lib.
+
+\=item Data::Startup 0.03
+
+Replaced C<Data::SecsPack> wit C<Data::Str2Num> in test library. The
+C<Data::Secs2> package used form comparisions now only includes
+C<Data::SecsPack> if it needs to pack numbers in accordance with
+SEMI E5.
+
+Reworked the C<new> subroutine so that it specifically handles the
+case of no inputs and only accepts an array with even number of
+members to initialize an option hash.
 
 \=back
 ^
@@ -471,6 +500,18 @@ disclaimer in the documentation and/or
 other materials provided with the
 distribution.
 
+\=item 3
+
+The installation of the binary or source
+must visually present to the installer 
+the above copyright notice,
+this list of conditions intact,
+that the original source is available
+at http://softwarediamonds.com
+and provide means
+for the installer to actively accept
+the list of conditions.
+
 \=back
 
 SOFTWARE DIAMONDS, http://www.SoftwareDiamonds.com,
@@ -496,6 +537,7 @@ INSTALLATION:
 To installed the release file, use the CPAN module
 pr PPM module in the Perl release
 or the INSTALL.PL script at the following web site:
+
 
  http://packages.SoftwareDiamonds.com
 
@@ -545,19 +587,9 @@ SEE_ALSO:
 ^
 
 
-HTML:
-<hr>
-<p><br>
-<!-- BLK ID="NOTICE" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="OPT-IN" -->
-<!-- /BLK -->
-<p><br>
-<!-- BLK ID="LOG_CGI" -->
-<!-- /BLK -->
-<p><br>
-^
+HTML: ^
 ~-~
+
+
 
 
