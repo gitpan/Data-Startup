@@ -10,23 +10,24 @@ use warnings;
 use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
-$VERSION = '0.01';
-$DATE = '2004/04/27';
+$VERSION = '0.02';
+$DATE = '2004/04/29';
 $FILE = __FILE__;
 
 use vars qw(%INVENTORY);
 %INVENTORY = (
-    'lib/Docs/Site_SVD/Data_Startup.pm' => [qw(0.01 2004/04/27), 'new'],
-    'MANIFEST' => [qw(0.01 2004/04/27), 'generated new'],
-    'Makefile.PL' => [qw(0.01 2004/04/27), 'generated new'],
-    'README' => [qw(0.01 2004/04/27), 'generated new'],
-    'lib/Data/Startup.pm' => [qw(0.03 2004/04/27), 'new'],
-    't/Data/Startup.d' => [qw(0.01 2004/04/27), 'new'],
-    't/Data/Startup.pm' => [qw(0.01 2004/04/27), 'new'],
-    't/Data/Startup.t' => [qw(0.01 2004/04/27), 'new'],
-    't/Data/File/Package.pm' => [qw(1.16 2004/04/27), 'new'],
-    't/Data/Test/Tech.pm' => [qw(1.21 2004/04/27), 'new'],
-    't/Data/Data/Secs2.pm' => [qw(1.18 2004/04/27), 'new'],
+    'lib/Docs/Site_SVD/Data_Startup.pm' => [qw(0.02 2004/04/29), 'new'],
+    'MANIFEST' => [qw(0.02 2004/04/29), 'generated new'],
+    'Makefile.PL' => [qw(0.02 2004/04/29), 'generated new'],
+    'README' => [qw(0.02 2004/04/29), 'generated new'],
+    'lib/Data/Startup.pm' => [qw(0.03 2004/04/29), 'new'],
+    't/Data/Startup.d' => [qw(0.01 2004/04/29), 'new'],
+    't/Data/Startup.pm' => [qw(0.01 2004/04/29), 'new'],
+    't/Data/Startup.t' => [qw(0.01 2004/04/29), 'new'],
+    't/Data/File/Package.pm' => [qw(1.16 2004/04/29), 'new'],
+    't/Data/Test/Tech.pm' => [qw(1.21 2004/04/29), 'new'],
+    't/Data/Data/Secs2.pm' => [qw(1.18 2004/04/29), 'new'],
+    't/Data/Data/SecsPack.pm' => [qw(0.03 2004/04/29), 'new'],
 
 );
 
@@ -53,11 +54,11 @@ use vars qw(%INVENTORY);
 
  Data::Startup - startup options class, override, config methods
 
- Revision: -
+ Revision: A
 
- Version: 0.01
+ Version: 0.02
 
- Date: 2004/04/27
+ Date: 2004/04/29
 
  Prepared for: General Public 
 
@@ -97,7 +98,7 @@ the methods directly as in an option object.
 
 =head2 1.3 Document overview.
 
-This document releases Data::Startup version 0.01
+This document releases Data::Startup version 0.02
 providing a description of the inventory, installation
 instructions and other information necessary to
 utilize and track this release.
@@ -112,7 +113,7 @@ system file specification.
 
 This document releases the file 
 
- Data-Startup-0.01.tar.gz
+ Data-Startup-0.02.tar.gz
 
 found at the following repository(s):
 
@@ -184,17 +185,18 @@ consists of the following files:
 
  file                                                         version date       comment
  ------------------------------------------------------------ ------- ---------- ------------------------
- lib/Docs/Site_SVD/Data_Startup.pm                            0.01    2004/04/27 new
- MANIFEST                                                     0.01    2004/04/27 generated new
- Makefile.PL                                                  0.01    2004/04/27 generated new
- README                                                       0.01    2004/04/27 generated new
- lib/Data/Startup.pm                                          0.03    2004/04/27 new
- t/Data/Startup.d                                             0.01    2004/04/27 new
- t/Data/Startup.pm                                            0.01    2004/04/27 new
- t/Data/Startup.t                                             0.01    2004/04/27 new
- t/Data/File/Package.pm                                       1.16    2004/04/27 new
- t/Data/Test/Tech.pm                                          1.21    2004/04/27 new
- t/Data/Data/Secs2.pm                                         1.18    2004/04/27 new
+ lib/Docs/Site_SVD/Data_Startup.pm                            0.02    2004/04/29 new
+ MANIFEST                                                     0.02    2004/04/29 generated new
+ Makefile.PL                                                  0.02    2004/04/29 generated new
+ README                                                       0.02    2004/04/29 generated new
+ lib/Data/Startup.pm                                          0.03    2004/04/29 new
+ t/Data/Startup.d                                             0.01    2004/04/29 new
+ t/Data/Startup.pm                                            0.01    2004/04/29 new
+ t/Data/Startup.t                                             0.01    2004/04/29 new
+ t/Data/File/Package.pm                                       1.16    2004/04/29 new
+ t/Data/Test/Tech.pm                                          1.21    2004/04/29 new
+ t/Data/Data/Secs2.pm                                         1.18    2004/04/29 new
+ t/Data/Data/SecsPack.pm                                      0.03    2004/04/29 new
 
 
 =head2 3.3 Changes
@@ -207,6 +209,23 @@ Changes are as follows:
 
 Originated
 
+=item Data::Startup 0.02
+
+FAILURE:
+
+ From: "Thurn, Martin" <martin.thurn@ngc.com> 
+ Date: Thu, 29 Apr 2004 09:21:20 -0400 (EDT) 
+ Subject: FAIL Data-Startup-0.01 sun4-solaris 2.8 
+
+I noticed that the test suite seem to fail without these modules:
+Data::SecsPack
+
+CORRECTION:
+
+Added C<Data::SecsPack> to the test library. The test Perl site lib only
+was corrupted and had a C<Data::SecsPack> install else c<vmake>
+would of failed. Remove C<Data::SecsPack> from the test Perl
+only site lib.
 
 =back
 
@@ -246,13 +265,13 @@ Enter one of the following repositories in a web browser:
   http://www.softwarediamonds/packages/
   http://www.perl.com/CPAN/authors/id/S/SO/SOFTDIA/
 
-Right click on 'Data-Startup-0.01.tar.gz' and download to a temporary
+Right click on 'Data-Startup-0.02.tar.gz' and download to a temporary
 installation directory.
 Enter the following where $make is 'nmake' for microsoft
 windows; otherwise 'make'.
 
- gunzip Data-Startup-0.01.tar.gz
- tar -xf Data-Startup-0.01.tar
+ gunzip Data-Startup-0.02.tar.gz
+ tar -xf Data-Startup-0.02.tar
  perl Makefile.PL
  $make test
  $make install
@@ -330,11 +349,11 @@ __DATA__
 DISTNAME: Data-Startup^
 REPOSITORY_DIR: packages^
 
-VERSION : 0.01^
-FREEZE: 0^
-PREVIOUS_DISTNAME:  ^
+VERSION : 0.02^
+FREEZE: 1^
+PREVIOUS_DISTNAME:  0.01^
 PREVIOUS_RELEASE:  ^
-REVISION: -^
+REVISION: A^
 
 
 AUTHOR  : SoftwareDiamonds.com E<lt>support@SoftwareDiamonds.comE<gt>^
@@ -364,6 +383,7 @@ t/Data/Startup.*
 lib/File/Package.pm => t/Data/File/Package.pm
 lib/Test/Tech.pm => t/Data/Test/Tech.pm
 lib/Data/Secs2.pm => t/Data/Data/Secs2.pm
+lib/Data/SecsPack.pm => t/Data/Data/SecsPack.pm
 ^
 
 PREREQ_PM:  ^
@@ -380,6 +400,23 @@ Changes are as follows:
 
 Originated
 
+\=item Data::Startup 0.02
+
+FAILURE:
+
+ From: "Thurn, Martin" <martin.thurn@ngc.com> 
+ Date: Thu, 29 Apr 2004 09:21:20 -0400 (EDT) 
+ Subject: FAIL Data-Startup-0.01 sun4-solaris 2.8 
+
+I noticed that the test suite seem to fail without these modules:
+Data::SecsPack
+
+CORRECTION:
+
+Added C<Data::SecsPack> to the test library. The test Perl site lib only
+was corrupted and had a C<Data::SecsPack> install else c<vmake>
+would of failed. Remove C<Data::SecsPack> from the test Perl
+only site lib.
 
 \=back
 ^

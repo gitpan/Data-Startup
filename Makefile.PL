@@ -23,7 +23,7 @@ my $tests = join ' ',unix2os('t/Data/Startup.t');
 WriteMakefile(
     NAME => 'Data::Startup',
     DISTNAME => 'Data-Startup',
-    VERSION  => '0.01',
+    VERSION  => '0.02',
     dist     => {COMPRESS => 'gzip',
                 'gz' => 'gz'},
     test     => {TESTS => $tests},

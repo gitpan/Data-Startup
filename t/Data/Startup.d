@@ -8,7 +8,7 @@ use warnings::register;
 
 use vars qw($VERSION $DATE);
 $VERSION = '0.01';   # automatically generated file
-$DATE = '2004/04/27';
+$DATE = '2004/04/29';
 
 
 ##### Demonstration Script ####
@@ -96,28 +96,29 @@ MSG
 demo( "\ \ \ \ use\ File\:\:Package\;\
 \ \ \ \ my\ \$uut\ \=\ \'Data\:\:Startup\'\;\
 \
-\ \ \ \ my\ \(\$result\,\@result\)\;\ \#\ provide\ scalar\ and\ array\ context"); # typed in command           
+\ \ \ \ my\ \(\$result\,\@result\)\;\ \#\ provide\ scalar\ and\ array\ context\
+\ \ \ \ my\ \(\$default_options\,\$options\)\ \=\ \(\'\$default_options\'\,\'\$options\'\)\;"); # typed in command           
           use File::Package;
     my $uut = 'Data::Startup';
 
-    my ($result,@result); # provide scalar and array context; # execution
+    my ($result,@result); # provide scalar and array context
+    my ($default_options,$options) = ('$default_options','$options');; # execution
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # create a Data::Startup default options
  # 
- ###
-
+ 
 EOF
 
-demo( "\(my\ \$default_options\ \=\ new\ \$uut\(\
+demo( "\(\$default_options\ \=\ new\ \$uut\(\
 \ \ \ \ \ \ \ perl_secs_numbers\ \=\>\ \'multicell\'\,\
 \ \ \ \ \ \ \ type\ \=\>\ \'ascii\'\,\ \ \ \
 \ \ \ \ \ \ \ indent\ \=\>\ \'\'\,\
 \ \ \ \ \ \ \ \'Data\:\:SecsPack\'\ \=\>\ \{\}\
 \ \ \ \)\)", # typed in command           
-      (my $default_options = new $uut(
+      ($default_options = new $uut(
        perl_secs_numbers => 'multicell',
        type => 'ascii',   
        indent => '',
@@ -125,130 +126,120 @@ demo( "\(my\ \$default_options\ \=\ new\ \$uut\(\
    ))); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # read perl_secs_numbers default option
  # 
- ###
-
+ 
 EOF
 
 demo( "\[\$default_options\-\>config\(\'perl_secs_numbers\'\)\]", # typed in command           
       [$default_options->config('perl_secs_numbers')]); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # write perl_secs_numbers default option
  # 
- ###
-
+ 
 EOF
 
 demo( "\[\$default_options\-\>config\(perl_secs_numbers\ \=\>\ \'strict\'\)\]", # typed in command           
       [$default_options->config(perl_secs_numbers => 'strict')]); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # restore perl_secs_numbers default option
  # 
- ###
-
+ 
 EOF
 
 demo( "\[\$default_options\-\>config\(perl_secs_numbers\ \=\>\ \'multicell\'\)\]", # typed in command           
       [$default_options->config(perl_secs_numbers => 'multicell')]); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # create options copy of default options
  # 
- ###
-
+ 
 EOF
 
-demo( "my\ \$option\ \=\ \$default_options\-\>override\(type\ \=\>\ \'binary\'\)", # typed in command           
-      my $option = $default_options->override(type => 'binary')); # execution
+demo( "\$options\ \=\ \$default_options\-\>override\(type\ \=\>\ \'binary\'\)", # typed in command           
+      $options = $default_options->override(type => 'binary')); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # verify default options unchanged
  # 
- ###
-
+ 
 EOF
 
 demo( "\$default_options", # typed in command           
       $default_options); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # array reference option config
  # 
- ###
-
+ 
 EOF
 
-demo( "\[\@result\ \=\ \$option\-\>config\(\[perl_secs_numbers\ \=\>\ \'strict\'\]\)\]", # typed in command           
-      [@result = $option->config([perl_secs_numbers => 'strict'])]); # execution
+demo( "\[\@result\ \=\ \$options\-\>config\(\[perl_secs_numbers\ \=\>\ \'strict\'\]\)\]", # typed in command           
+      [@result = $options->config([perl_secs_numbers => 'strict'])]); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # array reference option config
  # 
- ###
-
+ 
 EOF
 
-demo( "\$option", # typed in command           
-      $option); # execution
+demo( "\$options", # typed in command           
+      $options); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # hash reference option config
  # 
- ###
-
+ 
 EOF
 
-demo( "\[\@result\ \=\ \$option\-\>config\(\{\'Data\:\:SecsPack\'\=\>\ \{decimal_fraction_digits\ \=\>\ 30\}\ \}\)\]", # typed in command           
-      [@result = $option->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })]); # execution
+demo( "\[\@result\ \=\ \$options\-\>config\(\{\'Data\:\:SecsPack\'\=\>\ \{decimal_fraction_digits\ \=\>\ 30\}\ \}\)\]", # typed in command           
+      [@result = $options->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })]); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # hash reference option config
  # 
- ###
-
+ 
 EOF
 
-demo( "\$option", # typed in command           
-      $option); # execution
+demo( "\$options", # typed in command           
+      $options); # execution
 
 
-print << 'EOF';
+print << "EOF";
 
  ##################
  # verify default options still unchanged
  # 
- ###
-
+ 
 EOF
 
 demo( "\$default_options", # typed in command           

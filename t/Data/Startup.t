@@ -8,7 +8,7 @@ use warnings::register;
 
 use vars qw($VERSION $DATE $FILE);
 $VERSION = '0.01';   # automatically generated file
-$DATE = '2004/04/27';
+$DATE = '2004/04/29';
 $FILE = __FILE__;
 
 
@@ -136,7 +136,8 @@ use warnings;
     use File::Package;
     my $uut = 'Data::Startup';
 
-    my ($result,@result); # provide scalar and array context;
+    my ($result,@result); # provide scalar and array context
+    my ($default_options,$options) = ('$default_options','$options');
 
    # Perl code from C:
 my $expected1 = 
@@ -226,7 +227,7 @@ skip_tests( 1 ) unless ok(
 
 #  ok:  1
 
-ok(  (my $default_options = new $uut(
+ok(  ($default_options = new $uut(
        perl_secs_numbers => 'multicell',
        type => 'ascii',   
        indent => '',
@@ -259,7 +260,7 @@ ok(  [$default_options->config(perl_secs_numbers => 'multicell')], # actual resu
 
 #  ok:  5
 
-ok(  my $option = $default_options->override(type => 'binary'), # actual results
+ok(  $options = $default_options->override(type => 'binary'), # actual results
      $expected2, # expected results
      "",
      "create options copy of default options");
@@ -273,28 +274,28 @@ ok(  $default_options, # actual results
 
 #  ok:  7
 
-ok(  [@result = $option->config([perl_secs_numbers => 'strict'])], # actual results
+ok(  [@result = $options->config([perl_secs_numbers => 'strict'])], # actual results
      ['perl_secs_numbers','multicell'], # expected results
      "",
      "array reference option config");
 
 #  ok:  8
 
-ok(  $option, # actual results
+ok(  $options, # actual results
      $expected3, # expected results
      "",
      "array reference option config");
 
 #  ok:  9
 
-ok(  [@result = $option->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })], # actual results
+ok(  [@result = $options->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })], # actual results
      ['Data::SecsPack',{}], # expected results
      "",
      "hash reference option config");
 
 #  ok:  10
 
-ok(  $option, # actual results
+ok(  $options, # actual results
      $expected4, # expected results
      "",
      "hash reference option config");

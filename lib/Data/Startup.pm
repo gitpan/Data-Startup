@@ -13,7 +13,7 @@ use attributes;
 
 use vars qw( $VERSION $DATE $FILE);
 $VERSION = '0.03';
-$DATE = '2004/04/27';
+$DATE = '2004/04/29';
 $FILE = __FILE__;
 
 #######
@@ -174,25 +174,24 @@ Data::Startup - startup options class, override, config methods
  @old_options_list = $options->config(\@option_list);
  @old_options_list = $options->config(\%option_list);
 
-# Note: may use [@option_list] instead of \@option_list
-#       and {@option_list} instead of \%option_list
+ # Note: May use [@option_list] instead of \@option_list
+ #       and {@option_list} instead of \%option_list
 
 =head1 DESCRIPTION
 
 Many times there is a group of subroutines that can be tailored by
 different situations with a few, say global variables.
 However, global variables pollute namespaces, become mangled
-when the functions are multi-threaded and probably some
+when the functions are multi-threaded and probably have many 
 other faults that it is not worth the time discovering.
 
-As been well documented in literature, objects do not have
+As well documented in literature, object oriented programming do not have
 these faults.
-The object in this program module is designed to be utilized
-either to provide the objectized options for a group of
-subroutines or encapsulated the subroutines as methods
-in a option object.
+This program module class of objects provide the objectized options
+for a group of subroutines or encapsulated options by using
+the methods directly as in an option object.
 
-The <Data::Startup> class provides a way to input options
+The C<Data::Startup> class provides a way to input options
 in very liberal manner of either
 
 =over 4
@@ -251,7 +250,7 @@ options syntax for a dual methods/subroutines as follows:
  {
      shift if UNIVERSAL::isa($_[0],__PACKAGE__);
      $default_options = Data::Startup->new() unless $default_options;
-     my ($arg1 .. $arg2, @options) = @_
+     my ($arg1 .. $argn, @options) = @_
      my $options = $default_options->override(@options);
 
      # ....
@@ -281,6 +280,24 @@ options syntax for a dual methods/subroutines as follows:
      $default_options = Data::Startup->new() unless $default_options;
      my $options = $default_options->override(shift @_) if ref($_[0] eq 'HASH');
      my (@args) = @_;
+
+     # ....
+ }
+
+If program module does not require program module wide global 
+default options, than still use C<Data::Startup> to provide
+liberal options syntax as follows
+
+ # SYNTAX: my_subroutine1($arg1 .. $argn, @options)
+ #         my_subroutine1($arg1 .. $argn, \@options)
+ #         my_subroutine1($arg1 .. $argn, \%options)
+ #
+ 
+ sub my_subroutine4
+ {
+     shift if UNIVERSAL::isa($_[0],__PACKAGE__);
+     my ($arg1 .. $argn, @options) = @_
+     my $options = new Data::Startup(@options);
 
      # ....
  }
@@ -368,13 +385,13 @@ follow on the next lines as comments. For example,
      my $uut = 'Data::Startup';
 
      my ($result,@result); # provide scalar and array context
+     my ($default_options,$options) = ('$default_options','$options');
 
  ##################
  # create a Data::Startup default options
  # 
- ###
 
- (my $default_options = new $uut(
+ ($default_options = new $uut(
         perl_secs_numbers => 'multicell',
         type => 'ascii',   
         indent => '',
@@ -392,7 +409,6 @@ follow on the next lines as comments. For example,
  ##################
  # read perl_secs_numbers default option
  # 
- ###
 
  [$default_options->config('perl_secs_numbers')]
 
@@ -405,7 +421,6 @@ follow on the next lines as comments. For example,
  ##################
  # write perl_secs_numbers default option
  # 
- ###
 
  [$default_options->config(perl_secs_numbers => 'strict')]
 
@@ -418,7 +433,6 @@ follow on the next lines as comments. For example,
  ##################
  # restore perl_secs_numbers default option
  # 
- ###
 
  [$default_options->config(perl_secs_numbers => 'multicell')]
 
@@ -431,9 +445,8 @@ follow on the next lines as comments. For example,
  ##################
  # create options copy of default options
  # 
- ###
 
- my $option = $default_options->override(type => 'binary')
+ $options = $default_options->override(type => 'binary')
 
  # bless( {
  #                 'perl_secs_numbers' => 'multicell',
@@ -446,7 +459,6 @@ follow on the next lines as comments. For example,
  ##################
  # verify default options unchanged
  # 
- ###
 
  $default_options
 
@@ -461,9 +473,8 @@ follow on the next lines as comments. For example,
  ##################
  # array reference option config
  # 
- ###
 
- [@result = $option->config([perl_secs_numbers => 'strict'])]
+ [@result = $options->config([perl_secs_numbers => 'strict'])]
 
  # [
  #          'perl_secs_numbers',
@@ -474,9 +485,8 @@ follow on the next lines as comments. For example,
  ##################
  # array reference option config
  # 
- ###
 
- $option
+ $options
 
  # bless( {
  #                 'perl_secs_numbers' => 'strict',
@@ -489,9 +499,8 @@ follow on the next lines as comments. For example,
  ##################
  # hash reference option config
  # 
- ###
 
- [@result = $option->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })]
+ [@result = $options->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })]
 
  # [
  #          'Data::SecsPack',
@@ -502,9 +511,8 @@ follow on the next lines as comments. For example,
  ##################
  # hash reference option config
  # 
- ###
 
- $option
+ $options
 
  # bless( {
  #                 'perl_secs_numbers' => 'strict',
@@ -519,7 +527,6 @@ follow on the next lines as comments. For example,
  ##################
  # verify default options still unchanged
  # 
- ###
 
  $default_options
 
@@ -535,12 +542,14 @@ follow on the next lines as comments. For example,
 
 Running the test script C<Startup.t> verifies
 the requirements for this module.
-
-The <tmake.pl> cover script for L<Test::STDmaker|Test::STDmaker>
+The C<tmake.pl> cover script for L<Test::STDmaker|Test::STDmaker>
 automatically generated the
 C<Startup.t> test script, C<Startup.d> demo script,
-and C<t::Data::Startup> STD program module POD,
+and C<t::Data::Startup> program module POD,
 from the C<t::Data::Startup> program module contents.
+The C<tmake.pl> cover script automatically ran the
+C<Startup.d> demo script and inserted the results
+int the 'DEMONSTRATION' section above.
 The  C<t::Data::Startup> program module
 is in the distribution file
 F<Data-Startup-$VERSION.tar.gz>.
@@ -565,7 +574,7 @@ Binding requirements are indexed with the
 pharse 'shall[dd]' where dd is an unique number
 for each header section.
 This conforms to standard federal
-government practices, 490A (L<STD490A/3.2.3.6>).
+government practices, L<STD490A 3.2.3.6|Docs::US_DOD::STD490A/3.2.3.6>.
 In accordance with the License, Software Diamonds
 is not liable for any requirement, binding or otherwise.
 

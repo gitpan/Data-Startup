@@ -11,7 +11,7 @@ use warnings::register;
 
 use vars qw($VERSION $DATE $FILE );
 $VERSION = '0.01';
-$DATE = '2004/04/27';
+$DATE = '2004/04/29';
 $FILE = __FILE__;
 
 ########
@@ -40,7 +40,7 @@ $FILE = __FILE__;
 
  Version: 
 
- Date: 2004/04/27
+ Date: 2004/04/29
 
  Prepared for: General Public 
 
@@ -89,6 +89,7 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
      use File::Package;
      my $uut = 'Data::Startup';
      my ($result,@result); # provide scalar and array context
+     my ($default_options,$options) = ('$default_options','$options');
  ^
  VO: ^
 
@@ -172,7 +173,7 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
   N: create a Data::Startup default options^
 
   A:
- (my $default_options = new $uut(
+ ($default_options = new $uut(
         perl_secs_numbers => 'multicell',
         type => 'ascii',   
         indent => '',
@@ -206,7 +207,7 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
 =head2 ok: 6
 
   N: create options copy of default options^
-  A: my $option = $default_options->override(type => 'binary')^
+  A: $options = $default_options->override(type => 'binary')^
   E: $expected2^
  ok: 6^
 
@@ -220,28 +221,28 @@ L<STD FormDB Test Description Fields|Test::STDmaker/STD FormDB Test Description 
 =head2 ok: 8
 
   N: array reference option config^
-  A: [@result = $option->config([perl_secs_numbers => 'strict'])]^
+  A: [@result = $options->config([perl_secs_numbers => 'strict'])]^
   E: ['perl_secs_numbers','multicell']^
  ok: 8^
 
 =head2 ok: 9
 
   N: array reference option config^
-  A: $option^
+  A: $options^
   E: $expected3^
  ok: 9^
 
 =head2 ok: 10
 
   N: hash reference option config^
-  A: [@result = $option->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })]^
+  A: [@result = $options->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })]^
   E: ['Data::SecsPack',{}]^
  ok: 10^
 
 =head2 ok: 11
 
   N: hash reference option config^
-  A: $option^
+  A: $options^
   E: $expected4^
  ok: 11^
 
@@ -380,6 +381,7 @@ Verify: Startup.t^
     my $uut = 'Data::Startup';
 
     my ($result,@result); # provide scalar and array context
+    my ($default_options,$options) = ('$default_options','$options');
 ^
 
 VO: ^
@@ -467,7 +469,7 @@ ok: 1^
  N: create a Data::Startup default options^
 
  A:
-(my $default_options = new $uut(
+($default_options = new $uut(
        perl_secs_numbers => 'multicell',
        type => 'ascii',   
        indent => '',
@@ -494,7 +496,7 @@ ok: 4^
 ok: 5^
 
  N: create options copy of default options^
- A: my $option = $default_options->override(type => 'binary')^
+ A: $options = $default_options->override(type => 'binary')^
  E: $expected2^
 ok: 6^
 
@@ -504,22 +506,22 @@ ok: 6^
 ok: 7^
 
  N: array reference option config^
- A: [@result = $option->config([perl_secs_numbers => 'strict'])]^
+ A: [@result = $options->config([perl_secs_numbers => 'strict'])]^
  E: ['perl_secs_numbers','multicell']^
 ok: 8^
 
  N: array reference option config^
- A: $option^
+ A: $options^
  E: $expected3^
 ok: 9^
 
  N: hash reference option config^
- A: [@result = $option->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })]^
+ A: [@result = $options->config({'Data::SecsPack'=> {decimal_fraction_digits => 30} })]^
  E: ['Data::SecsPack',{}]^
 ok: 10^
 
  N: hash reference option config^
- A: $option^
+ A: $options^
  E: $expected4^
 ok: 11^
 

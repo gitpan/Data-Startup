@@ -12,7 +12,7 @@ use attributes;
 
 use vars qw($VERSION $DATE $FILE);
 $VERSION = '1.18';
-$DATE = '2004/04/27';
+$DATE = '2004/04/29';
 $FILE = __FILE__;
 
 use Data::SecsPack 0.03;
@@ -48,11 +48,11 @@ sub new
 }
 
 
-use SelfLoader;
+# use SelfLoader;
 
-1
+# 1
 
-__DATA__
+# __DATA__
 
 
 ###########

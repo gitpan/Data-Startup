@@ -14,7 +14,7 @@ use Data::Secs2 qw(stringify);
 
 use vars qw($VERSION $DATE $FILE);
 $VERSION = '1.21';
-$DATE = '2004/04/27';
+$DATE = '2004/04/29';
 $FILE = __FILE__;
 
 use vars qw(@ISA @EXPORT_OK);
